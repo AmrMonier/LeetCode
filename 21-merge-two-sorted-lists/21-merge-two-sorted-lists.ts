@@ -12,9 +12,7 @@
 
 function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
 
-    if(list1 && !list2) return list1
-    if(!list1 && list2) return list2
-    if(!list1 && !list2) return null
+    if(!list1 || !list2) return list1||list2
     let newList : ListNode 
     let temp1 = list1
     let temp2 = list2
@@ -40,7 +38,7 @@ function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode
         tempNode = tempNode.next
         
     }
-    if(temp2 && !temp1 ) tempNode.next = temp2
-    else if (!temp2 && temp1) tempNode.next = temp1
+    if(temp2) tempNode.next = temp2
+    else if (temp1) tempNode.next = temp1
     return newList
 };
