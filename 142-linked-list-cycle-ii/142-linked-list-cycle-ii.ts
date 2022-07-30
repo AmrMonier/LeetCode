@@ -10,15 +10,29 @@
  * }
  */
 
+// function detectCycle(head: ListNode | null): ListNode | null {
+//     const hashMap = new Map<ListNode, boolean>()
+//     while(head){        
+//         if(hashMap.get(head)) return head
+//         else hashMap.set(head, true)
+//         head = head.next
+//     }
+//     return null
+// };
+// Floyed Algorithm
 function detectCycle(head: ListNode | null): ListNode | null {
-    const hashMap = new Map<ListNode, boolean>()
-    while(head){
-
-
-        
-        if(hashMap.get(head)) return head
-        else hashMap.set(head, true)
-        head = head.next
+    let fast = head, slow = head
+    while(slow && fast && fast.next){
+        slow = slow.next
+        fast = fast.next.next
+        if(fast === slow){
+            slow = head
+            while(fast !== slow){
+                fast = fast.next
+                slow = slow.next
+            }
+            return slow
+        }
     }
     return null
 };
