@@ -8,23 +8,17 @@
 var solution = function(isBadVersion: any) {
 
     return function(n: number): number {
+        if(n === 1) return n
         let left = 1 
         let right = n
         let middle = -1
         while(left < right){
-            if(right - left <= 3){
-                for(let i = left; i <= right; i++){
-                    if(isBadVersion(i))
-                        return i
-                }
-            }
             middle = Math.floor(left + (right - left) / 2)
-            if(isBadVersion(middle)){
+            if(!isBadVersion(middle))
+                left = middle + 1    
+            else 
                 right = middle 
-            }
-            else {
-                left = middle + 1
-            }
+            
         }
         return left
     };
